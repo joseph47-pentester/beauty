@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Femi Aura</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #fafafa;
+  color: #333;
+}
+
+header {
+  background: linear-gradient(135deg, #111, #2b2b2b);
+  color: white;
+  padding: 25px;
+  text-align: center;
+}
+
+nav {
+  background: #ff4da6;
+  padding: 12px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+nav a {
+  color: white;
+  margin: 0 12px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.hero {
+  padding: 80px 20px;
+  text-align: center;
+  background: linear-gradient(to right, #ffe6f0, #ffffff);
+}
+
+.hero h2 {
+  font-size: 38px;
+  margin-bottom: 10px;
+}
+
+.section {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  background: white;
+  padding: 18px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+input, textarea, select {
+  width: 90%;
+  padding: 12px;
+  margin: 6px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+button {
+  background: #ff4da6;
+  color: white;
+  padding: 12px 22px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  padding: 16px;
+  border-radius: 50%;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+footer {
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+#adminPanel {
+  display: none;
+  padding: 20px;
+  background: #fff;
+  border-top: 2px solid #ff4da6;
+}
+
+.booking-item {
+  background: #f4f4f4;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Femi Aura</h1>
+  <p>Hair • Nails • Makeup • Skincare</p>
+</header>
+
+<nav>
+  <a href="#services">Services</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#booking">Booking</a>
+  <a href="#contact">Contact</a>
+  <a href="#" onclick="openAdmin()">Admin</a>
+</nav>
+
+<div class="hero">
+  <h2>Glow with Confidence</h2>
+  <p>Premium beauty services in Nakuru</p>
+</div>
+
+<div class="section" id="services">
+  <h2>Our Services</h2>
+  <div class="grid">
+    <div class="card">Hair Styling</div>
+    <div class="card">Braiding</div>
+    <div class="card">Nail Art</div>
+    <div class="card">Makeup</div>
+    <div class="card">Facials</div>
+  </div>
+</div>
+
+<div class="section" id="gallery">
+  <h2>Our Work</h2>
+  <div class="gallery">
+    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9">
+    <img src="https://images.unsplash.com/photo-1526045478516-99145907023c">
+    <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796">
+    <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937">
+  </div>
+</div>
+
+<div class="section" id="booking">
+  <h2>Book Appointment</h2>
+
+  <form onsubmit="book(event)">
+    <input type="text" id="name" placeholder="Your Name" required><br>
+    <input type="tel" id="phone" placeholder="Phone Number" required><br>
+
+    <select id="service">
+      <option>Hair Styling</option>
+      <option>Braiding</option>
+      <option>Nail Art</option>
+      <option>Makeup</option>
+      <option>Facials</option>
+    </select><br>
+
+    <input type="date" id="date" required><br>
+    <input type="time" id="time" required><br>
+
+    <button type="submit">Book via WhatsApp</button>
+  </form>
+</div>
+
+<div class="section" id="contact">
+  <h2>Contact</h2>
+  <p>📍 Nakuru, Kenya</p>
+  <p>📞 0738052305</p>
+</div>
+
+<div id="adminPanel">
+  <h2>Admin Dashboard</h2>
+  <div id="bookings"></div>
+</div>
+
+<a class="whatsapp" href="https://wa.me/254738052305" target="_blank">💬</a>
+
+<footer>© 2026 Femi Aura</footer>
+
+<script>
+let allBookings = JSON.parse(localStorage.getItem('bookings')) || [];
+
+function book(e){
+  e.preventDefault();
+
+  let booking = {
+    name: document.getElementById('name').value,
+    phone: document.getElementById('phone').value,
+    service: document.getElementById('service').value,
+    date: document.getElementById('date').value,
+    time: document.getElementById('time').value
+  };
+
+  allBookings.push(booking);
+  localStorage.setItem('bookings', JSON.stringify(allBookings));
+
+  let msg = `Hello Femi Aura,%0A%0ABooking:%0AName: ${booking.name}%0APhone: ${booking.phone}%0AService: ${booking.service}%0ADate: ${booking.date}%0ATime: ${booking.time}`;
+
+  window.open(`https://wa.me/254738052305?text=${msg}`, '_blank');
+}
+
+function openAdmin(){
+  let pass = prompt('Enter admin password:');
+  if(pass === '1234'){
+    document.getElementById('adminPanel').style.display = 'block';
+    loadBookings();
+  } else {
+    alert('Wrong password');
+  }
+}
+
+function loadBookings(){
+  let box = document.getElementById('bookings');
+  box.innerHTML = '';
+
+  allBookings.forEach(b => {
+    box.innerHTML += `<div class='booking-item'><b>${b.name}</b><br>${b.phone}<br>${b.service}<br>${b.date} ${b.time}</div>`;
+  });
+}
+</script>
+
+</body>
+</html>
